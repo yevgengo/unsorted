@@ -23,7 +23,7 @@ def buildchains(targetelement,entirelist,currentoutputlist):
     longestlist=[targetelement]
     outputlist=[targetelement]
     nearlist=[]
-    if (entirelist==[]):
+    if not entirelist:
         return []
 
     if (entirelist==[targetelement]):
@@ -79,7 +79,8 @@ if __name__=="__main__":
         candidateoutput=buildchains(element,ourflowerfield,[])
         if(len(candidateresult)<len(candidateoutput)):
             candidateresult=candidateoutput
-        for secondelement in candidateresult:
+        for secondelement in candidateoutput:
+
             if (secondelement in candidateresult):
                 candidateresult=list(set(candidateresult).union(set(candidateoutput)))
             if (secondelement in output):
@@ -87,12 +88,14 @@ if __name__=="__main__":
             else:
                 if(len(output)<len(candidateresult)):
                     output=candidateresult
+                if(len(candidateresult)<len(candidateoutput)):
+                    candidateresult=candidateoutput
 
 
 #        print("outputishere with length of ",len(output))
 
 
-    
+    print('final answer')    
     for element in output:
         print (element.name,element.xcoord,element.ycoord,element.radius)
         element.create_circle('green')
