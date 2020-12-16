@@ -23,7 +23,7 @@ def buildchains(targetelement,entirelist,currentoutputlist):
     longestlist=[targetelement]
     outputlist=[targetelement]
     nearlist=[]
-    if not entirelist:
+    if (entirelist==[]):
         return []
 
     if (entirelist==[targetelement]):
@@ -57,7 +57,7 @@ if __name__=="__main__":
     output=[]
     currentflower=flower()
 
-    for i in range (1,10):
+    for i in range (10):
         currentflower=flower()
 
         ourflowerfield=ourflowerfield+[currentflower]
@@ -66,6 +66,7 @@ if __name__=="__main__":
     ax.axis('scaled')
     plt.xlim(-200,200)
     plt.ylim(-200,200)
+    print ("Our Field")
     for element in ourflowerfield:
         print(element.name,element.xcoord,element.ycoord,element.radius)
         element.create_circle()
@@ -79,8 +80,7 @@ if __name__=="__main__":
         candidateoutput=buildchains(element,ourflowerfield,[])
         if(len(candidateresult)<len(candidateoutput)):
             candidateresult=candidateoutput
-        for secondelement in candidateoutput:
-
+        for secondelement in candidateresult:
             if (secondelement in candidateresult):
                 candidateresult=list(set(candidateresult).union(set(candidateoutput)))
             if (secondelement in output):
@@ -88,14 +88,12 @@ if __name__=="__main__":
             else:
                 if(len(output)<len(candidateresult)):
                     output=candidateresult
-                if(len(candidateresult)<len(candidateoutput)):
-                    candidateresult=candidateoutput
 
 
 #        print("outputishere with length of ",len(output))
 
 
-    print('final answer')    
+    print ("Our output")
     for element in output:
         print (element.name,element.xcoord,element.ycoord,element.radius)
         element.create_circle('green')
